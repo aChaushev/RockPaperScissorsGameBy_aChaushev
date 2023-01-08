@@ -10,6 +10,10 @@ For each game, the player and the computer chooses between Rock, Scissors and Pa
   - Paper beats Rock
   
 *Also, the computer has an extra special item. Play to find out.*
+  
+*Screenshot:*
+ 
+<img alt="Image" width="400px" src="assets/images/RockPaperScissors-Screenshot.png"></img>
 
 • [Source code](https://github.com/aChaushev/RockPaperScissorsGame/blob/cfeadddb24ade6e6ceabe6baef3ac8034e5f2cbf/RockPaperScissors.java)
 • ***by aChaushev***
