@@ -1,5 +1,5 @@
 # "Rock-Paper-Scissors" Game
-![RockPaperScissors-Pic](https://user-images.githubusercontent.com/119160647/205402398-d27f6b64-99ae-4e1d-ba4f-4444734d652f.png)
+<img alt="Image" width="200px" src="assets/images/RockPaperScissors-Pic.png"></img>
 
 A simple console-based Java two-player game.
 Тhe game is divided into seasons, each consisting of 10 games.
