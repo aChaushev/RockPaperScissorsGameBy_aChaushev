@@ -20,7 +20,7 @@ For each game, the player and the computer chooses between Rock, Scissors and Pa
 You can try the game directly in your browser here:
 <br>
 <br>
-[![Run on Repl.it](https://replit.com/badge/github/aChaushev/RockPaperScissorsGameBy_aChaushev)](https://replit.com/@aChaushev/RockPaperScissorsGameByaChaushev)
+[![Run on Repl.it](https://replit.com/badge/github/aChaushev/RockPaperScissorsGameBy_aChaushev)](https://replit.com/@aChaushev/GuessANumberByaChaushev)
 <br>
 <br>
 • [Source code](https://github.com/aChaushev/RockPaperScissorsGame/blob/cfeadddb24ade6e6ceabe6baef3ac8034e5f2cbf/RockPaperScissors.java)
