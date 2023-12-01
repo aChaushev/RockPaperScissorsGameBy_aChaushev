@@ -2,66 +2,98 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class RockPaperScissors {
+    private static final String ROCK = "Rock";
+    private static final String PAPER = "Paper";
+    private static final String SCISSORS = "Scissors";
+
+    static int playerScore = 0;
+    static int computerScore = 0;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        String Rock = "Rock";
-        String Paper = "Paper";
-        String Scissors = "Scissors";
+        boolean playAgain = true;
 
-        int playerScore = 0;
-        int computerScore = 0;
-        for (int i = 1; i <= 10; i++) {
-            System.out.println("-> Game " + i);
-            System.out.print("Choose [r]ock, [p]aper or [s]cissors: ");
-            String playerMove = scanner.nextLine();
+        while (playAgain) {
+            for (int i = 1; i <= 10; i++) {
+                System.out.println("-> Game " + i);
+                String playerMove = getPlayerMove(scanner);
 
-            if (playerMove.equals("r") || playerMove.equals("rock")) {
-                playerMove = Rock;
-            } else if (playerMove.equals("p") || playerMove.equals("paper")) {
-                playerMove = Paper;
-            } else if (playerMove.equals("s") || playerMove.equals("scissors")) {
-                playerMove = Scissors;
-            } else {
-                System.out.println("Invalid Input. Try Again...");
-                i--;
-                continue;
+                String computerMove = getComputerMove();
+
+                System.out.printf("The computer chose %s.%n", computerMove);
+
+                determineWinner(playerMove, computerMove);
             }
 
-            Random random = new Random();
-            int computerRandomNumber = random.nextInt(4);
-            String computerMove = switch (computerRandomNumber) {
-                case 1 -> Rock;
-                case 2 -> Paper;
-                case 3 -> Scissors;
-                default -> "Lightsaber";
-            };
-            System.out.printf("The computer chose %s.%n", computerMove);
+            printFinalResult(playerScore, computerScore);
 
-            if ((playerMove.equals(Rock) && computerMove.equals(Scissors)) ||
-                    (playerMove.equals(Paper) && computerMove.equals(Rock)) ||
-                    (playerMove.equals(Scissors) && computerMove.equals(Paper))) {
-                System.out.println("You win.");
-                playerScore++;
-            } else if ((playerMove.equals(Rock) && computerMove.equals(Paper)) ||
-                    (playerMove.equals(Paper) && computerMove.equals(Scissors)) ||
-                    (playerMove.equals(Scissors) && computerMove.equals(Rock))) {
-                System.out.println("You lose.");
-                computerScore++;
-            } else if ((playerMove.equals(Rock) && computerMove.equals(Rock)) ||
-                    (playerMove.equals(Paper) && computerMove.equals(Paper)) ||
-                    (playerMove.equals(Scissors) && computerMove.equals(Scissors))) {
-                System.out.println("This game was a draw.");
-            } else {
-                System.out.println("May the Force be with you");
-            }
+            System.out.print("Do you want to play again? (y/n): ");
+            String playAgainInput = scanner.nextLine().toLowerCase();
+            playAgain = playAgainInput.equals("y") || playAgainInput.equals("yes");
         }
+    }
+
+    private static String getPlayerMove(Scanner scanner) {
+        System.out.print("Choose [r]ock, [p]aper, or [s]cissors: ");
+        String playerMove = scanner.nextLine().toLowerCase();
+
+        switch (playerMove) {
+            case "r":
+            case "rock":
+                return ROCK;
+            case "p":
+            case "paper":
+                return PAPER;
+            case "s":
+            case "scissors":
+                return SCISSORS;
+            default:
+                System.out.println("Invalid Input. Try Again...");
+                return getPlayerMove(scanner);
+        }
+    }
+
+    private static String getComputerMove() {
+        Random random = new Random();
+        int computerRandomNumber = random.nextInt(4);
+
+        return switch (computerRandomNumber) {
+            case 1 -> ROCK;
+            case 2 -> PAPER;
+            case 3 -> SCISSORS;
+            default -> "Lightsaber";
+        };
+    }
+
+    private static void determineWinner(String playerMove, String computerMove) {
+        if ((playerMove.equals(ROCK) && computerMove.equals(SCISSORS)) ||
+                (playerMove.equals(PAPER) && computerMove.equals(ROCK)) ||
+                (playerMove.equals(SCISSORS) && computerMove.equals(PAPER))) {
+            System.out.println("You win.");
+            playerScore++;
+        } else if ((playerMove.equals(ROCK) && computerMove.equals(PAPER)) ||
+                (playerMove.equals(PAPER) && computerMove.equals(SCISSORS)) ||
+                (playerMove.equals(SCISSORS) && computerMove.equals(ROCK))) {
+            System.out.println("You lose.");
+            computerScore++;
+        } else if ((playerMove.equals(ROCK) && computerMove.equals(ROCK)) ||
+                (playerMove.equals(PAPER) && computerMove.equals(PAPER)) ||
+                (playerMove.equals(SCISSORS) && computerMove.equals(SCISSORS))) {
+            System.out.println("This game was a draw.");
+        } else {
+            System.out.println("May the Force be with you");
+        }
+    }
+
+    private static void printFinalResult(int playerScore, int computerScore) {
         System.out.printf("%nYour score is: %d%n", playerScore);
         System.out.printf("Computer score is: %d%n", computerScore);
-        if (playerScore > computerScore){
+
+        if (playerScore > computerScore) {
             System.out.println("Congratulations, you win the season!");
-        } else if (computerScore > playerScore){
-            System.out.println("Уou lost the season!");
+        } else if (computerScore > playerScore) {
+            System.out.println("You lost the season!");
         } else {
             System.out.println("Equal result, try again.");
         }
